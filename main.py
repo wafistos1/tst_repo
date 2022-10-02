@@ -1,10 +1,7 @@
-from ast import While
 from PIL import Image
 from pytesseract import pytesseract
 import logging
 import time
-import os
-import requests
 import re
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -22,24 +19,26 @@ IMAGE_NAME = 'captcha.jpg'
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
 
+def lunch_driver():
+    # LUNCH BROWSER
+    logging.info('Extract image captcha from server.')
+    options = Options()
+    ua = UserAgent()
+    userAgent = ua.random
+    logging.info(userAgent)
+    options.add_argument(f'user-agent={userAgent}')
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
+    return driver
 
-# LUNCH BROWSER
-logging.info('Extract image captcha from server.')
-options = Options()
-ua = UserAgent()
-userAgent = ua.random
-logging.info(userAgent)
-options.add_argument(f'user-agent={userAgent}')
-options.add_argument("--headless")
-driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
-# driver = webdriver.Chrome(options=options, executable_path='./geckodriver')
-driver.get('https://sandbox.dereuromark.de/sandbox/captchas/math')
+
+
 logging.info('Browser lunched..')
 
 count = 0
 
 def register_user():
-    
+    driver = lunch_driver()
     driver.get('https://sandbox.dereuromark.de/sandbox/captchas/math')
     
 
@@ -102,6 +101,7 @@ def register_user():
 
     return {'Result': 'registration was successful'}
 
-
+if __name__=='__main__':
+    pass
 
 
