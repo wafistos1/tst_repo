@@ -30,7 +30,7 @@ ua = UserAgent()
 userAgent = ua.random
 logging.info(userAgent)
 options.add_argument(f'user-agent={userAgent}')
-#options.add_argument("--headless")
+options.add_argument("--headless")
 driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
 driver.get('https://sandbox.dereuromark.de/sandbox/captchas/math')
 logging.info('Browser lunched..')
