@@ -1,4 +1,5 @@
 /venv
 test.ipynb
 geckodriver.log
-cap1.jpg
+*.jpg
+__pycache__/
