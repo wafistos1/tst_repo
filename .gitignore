@@ -3,3 +3,5 @@ test.ipynb
 geckodriver.log
 *.jpg
 __pycache__/
+*.xlsx
+*xlsx#
